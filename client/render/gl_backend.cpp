@@ -308,9 +308,12 @@ bool GL_BackendStartFrame( ref_viewpass_t *rvp, RefParams params )
 		GL_ComputeSunParams( skyVector );
 		allow_dynamic_sun = true;
 
+#define _DEBUGCSM
+#ifdef _DEBUGCSM
 		gEngfuncs.Con_NPrintf(7, "Day Time: %i:%02.f\n", (int)time, (time - (int)time) * 59.0f);
 		gEngfuncs.Con_NPrintf(8, "Sun Ambient: %f\n", tr.sun_ambient);
 		gEngfuncs.Con_NPrintf(9, "Ambient Factor %f\n", tr.ambientFactor);
+#endif // _DEBUGCSM
 	}
 	else
 	{
