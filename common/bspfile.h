@@ -45,8 +45,8 @@ BRUSH MODELS
 #define ANGLE_DOWN			-2
 
 // bmodel limits
-#define MAX_MAP_HULLS		4		// MAX_HULLS
-#define MIPLEVELS			4		// software renderer mipmap count
+#define MAX_MAP_HULLS		16		// MAX_HULLS
+#define MIPLEVELS			8		// software renderer mipmap count
 
 #define WORLD_MINS			-32768
 #define WORLD_MAXS			32768
@@ -54,11 +54,11 @@ BRUSH MODELS
 #define BOGUS_RANGE			WORLD_SIZE * 1.74	// half-diagonal
 
 // these are for entity key:value pairs
-#define MAX_KEY			64
-#define MAX_VALUE			4096
+#define MAX_KEY			512
+#define MAX_VALUE			16384
 
 // lightstyle management
-#define MAXLIGHTMAPS		4		// max lightstyles per each face
+#define MAXLIGHTMAPS		8		// max lightstyles per each face
 #define MAXSTYLES 			64		// very fundamental thing
 #define LS_NORMAL			0x00
 #define LS_SKY			0x14		// light_environment style
@@ -67,29 +67,29 @@ BRUSH MODELS
 
 #define VERTEXNORMAL_CONE_INNER_ANGLE	DEG2RAD( 7.275 )
 
-#define MAX_MAP_MODELS			8192		// default limit is 1024
-#define MAX_MAP_ENTITIES		32768		// can be increased up to 32768 if needed
-#define MAX_MAP_ENTSTRING		0x200000	// 2 mB should be enough
-#define MAX_MAP_PLANES			65536		// can be increased without problems
-#define MAX_MAP_NODES			32767		// because negative shorts are leafnums
+#define MAX_MAP_MODELS			131072		// default limit is 1024
+#define MAX_MAP_ENTITIES		131072		// can be increased up to 32768 if needed
+#define MAX_MAP_ENTSTRING		0x800000	// 2 mB should be enough
+#define MAX_MAP_PLANES			262144		// can be increased without problems
+#define MAX_MAP_NODES			262144		// because negative shorts are leafnums
 #define MAX_MAP_CLIPNODES		32767		// because negative shorts are contents
 #define MAX_MAP_CLIPNODES32		1048576		// can be increased but not needed
-#define MAX_MAP_LEAFS			32768		// signed short limit (GoldSrc have internal limit at 8192)
-#define MAX_MAP_VERTS			65535		// unsigned short limit
-#define MAX_MAP_FACES			65535		// unsigned short limit
-#define MAX_MAP_MARKSURFACES	65535		// unsigned short limit
-#define MAX_MAP_TEXINFO			32768		// because signed short
-#define MAX_MAP_FACEINFO		8192		// can be increased but not needs
-#define MAX_MAP_EDGES			0x100000	// can be increased but not needed
-#define MAX_MAP_SURFEDGES		0x200000	// can be increased but not needed
-#define MAX_MAP_TEXTURES		8192		// can be increased but not needed
+#define MAX_MAP_LEAFS			262144		// signed short limit (GoldSrc have internal limit at 8192)
+#define MAX_MAP_VERTS			262144		// unsigned short limit
+#define MAX_MAP_FACES			262144		// unsigned short limit
+#define MAX_MAP_MARKSURFACES	262144		// unsigned short limit
+#define MAX_MAP_TEXINFO			262144		// because signed short
+#define MAX_MAP_FACEINFO		262144		// can be increased but not needs
+#define MAX_MAP_EDGES			0x200000	// can be increased but not needed
+#define MAX_MAP_SURFEDGES		0x400000	// can be increased but not needed
+#define MAX_MAP_TEXTURES		131072		// can be increased but not needed
 #define MAX_MAP_MIPTEX			0x2000000	// 32 Mb internal textures data
 #define MAX_MAP_LIGHTING		0x7a12000	// 120 Mb lightmap raw data (can contain deluxemaps)
 #define MAX_MAP_VISIBILITY		0x2000000	// 32 Mb visdata
 #define MAX_MAP_VISLIGHTDATA	0x4000000	// 64 Mb for lights visibility
-#define MAX_MAP_CUBEMAPS		1024
-#define MAX_MAP_LEAFLIGHTS		0x40000		// can be increased
-#define MAX_MAP_WORLDLIGHTS		65535		// including a light surfaces too
+#define MAX_MAP_CUBEMAPS		8192
+#define MAX_MAP_LEAFLIGHTS		0x80000		// can be increased
+#define MAX_MAP_WORLDLIGHTS		262144		// including a light surfaces too
 
 // quake lump ordering
 #define LUMP_ENTITIES		0

@@ -1,9 +1,9 @@
 /***
 *
 *	Copyright (c) 1996-2002, Valve LLC. All rights reserved.
-*	
-*	This product contains software technology licensed from Id 
-*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc. 
+*
+*	This product contains software technology licensed from Id
+*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc.
 *	All Rights Reserved.
 *
 *   Use, distribution, and modification of this source code and/or resulting
@@ -33,8 +33,8 @@ if a trigger has a NETNAME, that NETNAME will become the TARGET of the triggered
 */
 class CTriggerMultiple : public CBaseTrigger
 {
-	DECLARE_CLASS( CTriggerMultiple, CBaseTrigger );
+	DECLARE_CLASS(CTriggerMultiple, CBaseTrigger);
 public:
-	void Spawn( void );
-	STATE GetState( void ) { return ( pev->nextthink > gpGlobals->time ) ? STATE_OFF : STATE_ON; }
+	void Spawn(void);
+	STATE GetState(void) { return (pev->nextthink > gpGlobals->time) ? STATE_OFF : STATE_ON; }
 };

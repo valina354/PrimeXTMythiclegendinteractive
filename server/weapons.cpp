@@ -1227,10 +1227,11 @@ void CWeaponBox::Kill( void )
 //=========================================================
 void CWeaponBox::Touch( CBaseEntity *pOther )
 {
-	if ( !(pev->flags & FL_ONGROUND ) )
+	/* // Useless, breaks picking up weapon boxes if they are positioned on a slanted wall.
+	if (!(pev->flags & FL_ONGROUND))
 	{
 		return;
-	}
+	}*/
 
 	if ( !pOther->IsPlayer() )
 	{

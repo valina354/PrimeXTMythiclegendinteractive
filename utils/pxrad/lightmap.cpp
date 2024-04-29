@@ -1629,6 +1629,10 @@ emittype_t GetLightType( entity_t *e )
 	else if( target[0] || CheckKey( e, "mangle" ))
 		return emit_spotlight;
 
+	// check for spotlight
+	if (!Q_strcmp(name, "env_dynlight"))
+		return emit_spotlight;
+
 	// otherwise it's pointlight
 	return emit_point;
 }

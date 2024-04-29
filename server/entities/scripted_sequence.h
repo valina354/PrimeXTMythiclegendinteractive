@@ -27,6 +27,11 @@
 #define SF_SCRIPT_OVERRIDESTATE			64
 #define SF_SCRIPT_NOSCRIPTMOVEMENT		128
 #define SF_SCRIPT_FIXANIMTRANSITIONS	256
+/**
+*	@brief Don't reset the entity's state after completing the script
+*	For chaining scripts without sequence changes
+*/
+constexpr auto SF_SCRIPT_NORESETENTITY = 512;
 
 #define SCRIPT_BREAK_CONDITIONS		(bits_COND_LIGHT_DAMAGE|bits_COND_HEAVY_DAMAGE)
 

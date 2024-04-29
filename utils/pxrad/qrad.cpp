@@ -47,7 +47,7 @@ static winding_t	*g_windingArray[MAX_SUBDIVIDE];
 static uint	g_numwindings = 0;
 static size_t	g_transfer_data_bytes;
 size_t		g_transfer_data_size[MAX_THREADS];
-uint		g_numbounce = DEFAULT_BOUNCE;		// originally this was 8
+uint		g_numbounce = DEFAULT_BOUNCE;
 vec_t		g_chop = DEFAULT_CHOP;
 vec_t		g_texchop = DEFAULT_TEXCHOP;
 vec_t		g_smoothvalue = DEFAULT_SMOOTHVALUE;

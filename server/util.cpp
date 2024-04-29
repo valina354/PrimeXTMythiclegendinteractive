@@ -3033,7 +3033,7 @@ bool Sys_LoadLibrary( const char* dllname, dllhandle_t* handle, const dllfunc_t 
 	// Initializations
 	for( gamefunc = fcts; gamefunc && gamefunc->name != NULL; gamefunc++ )
 		*gamefunc->func = NULL;
-
+ 
 	char dllpath[128];
 	char szDirName[MAX_PATH];
 

@@ -2158,7 +2158,7 @@ void PM_NoClip()
 	wishvel = pmove->forward * fmove + pmove->right * smove;
 
 	wishvel[2] += pmove->cmd.upmove;
-	pmove->origin += wishvel * pmove->frametime;
+	pmove->origin += wishvel * pmove->frametime * pmove->movevars->noclipspeed;
 	
 	// Zero out the velocity so that we don't accumulate a huge downward velocity from
 	//  gravity, etc.
@@ -2285,7 +2285,7 @@ void PM_Jump (void)
 		return;		// in air, so no effect
 	}
 
-	if ( pmove->oldbuttons & IN_JUMP )
+	if (pmove->oldbuttons & IN_JUMP && !pmove->movevars->bunnyhop)
 		return;		// don't pogo stick
 
 	// In the air now.

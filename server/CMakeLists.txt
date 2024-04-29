@@ -101,7 +101,7 @@ list(APPEND SVDLL_SOURCES ${ENTITIES_SOURCES})
 list(APPEND SVDLL_SOURCES ${MONSTERS_SOURCES})
 list(APPEND SVDLL_SOURCES ${WEAPONS_SOURCES})
 list(APPEND SVDLL_SOURCES ${GAMERULES_SOURCES})
-add_library(${PROJECT_NAME} SHARED ${SVDLL_SOURCES})
+add_library(${PROJECT_NAME} SHARED ${SVDLL_SOURCES} "entities/trigger_kill_nogib.cpp"            "entities/point_servercommand.cpp" "entities/trigger_multiple.h")
 
 target_include_directories(${PROJECT_NAME} PRIVATE
 	"."

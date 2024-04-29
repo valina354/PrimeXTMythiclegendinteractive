@@ -16,6 +16,8 @@
 #include "flashlight.h"
 #include <mathlib.h>
 
+extern const Vector g_vecZero;
+
 // thirdperson camera
 void CAM_Think( void ) {}
 extern "C" {
@@ -817,6 +819,65 @@ typedef struct
 	int	CurrentAngle;
 } viewinterp_t;
 
+/*
+==================
+V_CalcSourceLag
+==================
+*/
+float g_fMaxViewModelLag = 1.5f;
+void V_CalcSourceLag(struct ref_params_s *pparams)
+{
+	auto view = gEngfuncs.GetViewModel();
+	static Vector m_vecLast = g_vecZero;
+
+	Vector angles = pparams->cl_viewangles;
+	Vector vOriginalOrigin = view->origin;
+	Vector vOriginalAngles = angles;
+
+	Vector forward;
+	AngleVectors(angles, forward, NULL, NULL);
+
+	if (pparams->frametime != 0.0f)
+	{
+		Vector vDifference;
+		VectorSubtract(forward, m_vecLast, vDifference);
+
+		float flSpeed = 5.0f;
+
+		float flDiff = vDifference.Length();
+		if ((flDiff > g_fMaxViewModelLag) && (g_fMaxViewModelLag > 0.0f))
+		{
+			float flScale = flDiff / g_fMaxViewModelLag;
+			flSpeed *= flScale;
+		}
+
+		VectorMA(m_vecLast, flSpeed * pparams->frametime, vDifference, m_vecLast);
+
+
+		VectorNormalize(m_vecLast);
+		VectorMA(view->origin, 5.0f, vDifference * -1.0f, view->origin);
+	}
+
+	Vector right, up;
+	AngleVectors(angles, forward, right, up);
+
+	float pitch = angles[PITCH];
+	if (pitch > 180.0f)
+		pitch -= 360.0f;
+	else if (pitch < -180.0f)
+		pitch += 360.0f;
+
+	if (g_fMaxViewModelLag == 0.0f)
+	{
+		view->origin = vOriginalOrigin;
+		angles = vOriginalAngles;
+	}
+
+	VectorMA(view->origin, -pitch * 0.035f, forward, view->origin);
+	VectorMA(view->origin, -pitch * 0.03f, right, view->origin);
+	VectorMA(view->origin, -pitch * 0.02f, up, view->origin);
+}
+
 //==========================
 // V_InterpolatePos
 //==========================
@@ -926,6 +987,8 @@ void V_CalcFirstPersonRefdef( struct ref_params_s *pparams )
 
 	// Let the viewmodel shake at about 10% of the amplitude
 	gEngfuncs.V_ApplyShake( view->origin, view->angles, 0.9f );
+
+	V_CalcSourceLag(pparams);
 
 	view->origin += pparams->forward * bob * 0.4f;
 	view->origin.z += bob;

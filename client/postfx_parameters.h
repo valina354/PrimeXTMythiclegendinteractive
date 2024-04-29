@@ -31,6 +31,12 @@ public:
     inline void SetBlueLevel(float value)       { m_flBlueLevel = value; }
     inline void SetVignetteScale(float value)   { m_flVignetteScale = value; }
     inline void SetFilmGrainScale(float value)  { m_flFilmGrainScale = value; }
+    inline void SetChromaticAberrationScale(float value) { m_flChromaticAberrationScale = value; }
+    inline void SetSepiaScale(float value) { m_flSepiaScale = value; }
+    inline void SetLensFlareScale(float value) { m_flLensFlareScale = value; }
+    inline void SetFXAAScale(float value) { m_flFXAAScale = value; }
+    inline void SetSharpnessScale(float value) { m_flSharpnessScale = value; }
+    inline void SetDitheringScale(float value) { m_flDitheringScale = value; }
     inline void SetColorAccentScale(float value) { m_flColorAccentScale = value; }
     inline void SetAccentColor(Vector value)    { m_vecAccentColor = value; }
 
@@ -43,6 +49,12 @@ public:
     inline float GetBlueLevel() const           { return m_flBlueLevel; }
     inline float GetVignetteScale() const       { return m_flVignetteScale; }
     inline float GetFilmGrainScale() const      { return m_flFilmGrainScale; }
+    inline float GetChromaticAberrationScale() const { return m_flChromaticAberrationScale; }
+    inline float GetSepiaScale() const { return m_flSepiaScale; }
+    inline float GetLensFlareScale() const { return m_flLensFlareScale; }
+    inline float GetFXAAScale() const { return m_flFXAAScale; }
+    inline float GetSharpnessScale() const { return m_flSharpnessScale; }
+    inline float GetDitheringScale() const { return m_flDitheringScale; }
     inline float GetColorAccentScale() const    { return m_flColorAccentScale; }
     inline const Vector& GetAccentColor() const { return m_vecAccentColor; }
 
@@ -58,6 +70,12 @@ private:
     float   m_flBlueLevel;
     float   m_flVignetteScale;
     float   m_flFilmGrainScale;
+    float   m_flChromaticAberrationScale;
+    float   m_flSepiaScale;
+    float   m_flLensFlareScale;
+    float   m_flFXAAScale;
+    float   m_flSharpnessScale;
+    float   m_flDitheringScale;
     float   m_flColorAccentScale;
     Vector  m_vecAccentColor;
 };

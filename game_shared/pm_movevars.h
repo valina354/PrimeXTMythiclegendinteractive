@@ -21,9 +21,11 @@ typedef struct movevars_s
 	float	gravity;           // Gravity for map
 	float	stopspeed;         // Deceleration when not moving
 	float	maxspeed;          // Max allowed speed
+	float	noclipspeed;	   // Noclip speed
 	float	spectatormaxspeed;
 	float	accelerate;        // Acceleration factor
 	float	airaccelerate;     // Same for when in open air
+	char bunnyhop;
 	float	wateraccelerate;   // Same for when in water
 	float	friction;          
 	float	edgefriction;	   // Extra friction near dropofs 

@@ -557,7 +557,7 @@ static_assert(sizeof(mextrasurf_t) == 324, "mextrasurf_t structure size should b
 static_assert(sizeof(decal_t) == 60, "decal_t structure size should be same as on engine");
 static_assert(sizeof(mfaceinfo_t) == 176, "mfaceinfo_t structure size should be same as on engine");
 #elif XASH_AMD64 == 1
-static_assert(sizeof(mextrasurf_t) == 496, "mextrasurf_t structure size should be same as on engine");
+static_assert(sizeof(mextrasurf_t) == 512, "mextrasurf_t structure size should be same as on engine");
 static_assert(sizeof(decal_t) == 88, "decal_t structure size should be same as on engine");
 static_assert(sizeof(mfaceinfo_t) == 304, "mfaceinfo_t structure size should be same as on engine");
 #endif

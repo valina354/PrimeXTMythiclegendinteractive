@@ -41,6 +41,9 @@ private:
 	float	m_flBlueLevel;
 	float	m_flVignetteScale;
 	float	m_flFilmGrainScale;
+	float	m_flChromaticAberrationScale;
+	float	m_flSepiaScale;
+	float	m_flLensFlareScale;
 	float	m_flColorAccentScale;
 	Vector	m_vecAccentColor;
 };

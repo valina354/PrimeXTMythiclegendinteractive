@@ -454,7 +454,7 @@ void InitPostEffects()
 	r_postfx_enable = CVAR_REGISTER("r_postfx_enable", "1.0", 0);
 	r_tonemap = CVAR_REGISTER("r_tonemap", "1", FCVAR_ARCHIVE);
 	r_bloom = CVAR_REGISTER("r_bloom", "1", FCVAR_ARCHIVE);
-	r_bloom_scale = CVAR_REGISTER("r_bloom_scale", "0.7", FCVAR_ARCHIVE);
+	r_bloom_scale = CVAR_REGISTER("r_bloom_scale", "5.0", FCVAR_ARCHIVE);
 	memset( &post, 0, sizeof( post ));
 	post.InitializeShaders();
 }
@@ -577,6 +577,24 @@ void V_RenderPostEffect( word hProgram )
 			break;
 		case UT_FILMGRAINSCALE:
 			u->SetValue(post.fxParameters.GetFilmGrainScale());
+			break;
+		case UT_CHROMATICABERRATIONSCALE:
+			u->SetValue(post.fxParameters.GetChromaticAberrationScale());
+			break;
+		case UT_SEPIASCALE:
+			u->SetValue(post.fxParameters.GetSepiaScale());
+			break;
+		case UT_LENSFLARESCALE:
+			u->SetValue(post.fxParameters.GetLensFlareScale());
+			break;
+		case UT_FXAASTRENGTH:
+			u->SetValue(post.fxParameters.GetFXAAScale());
+			break;
+		case UT_SHARPNESSTRENGTH:
+			u->SetValue(post.fxParameters.GetSharpnessScale());
+			break;
+		case UT_DITHERRINGSCALE:
+			u->SetValue(post.fxParameters.GetDitheringScale());
 			break;
 		case UT_ACCENTCOLOR:
 		{

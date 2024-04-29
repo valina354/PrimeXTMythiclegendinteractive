@@ -116,6 +116,50 @@ extern "C" void DLLEXPORT HUD_PlayerMove(struct playermove_s *ppmove, int server
 	PM_Move( ppmove, server );
 }
 
+/*
+================
+SV_Status_f
+================
+*/
+void CL_Status_f(void)
+{
+	hud_player_info_t pl;
+	int		i;
+	bool isfirstplayer = true;
+
+
+	for (i = 1; i < MAX_PLAYERS; i++)
+	{
+		GetPlayerInfo(i, &pl);
+		if (pl.name == NULL)
+			continue;
+		else if (isfirstplayer)
+		{
+			gEngfuncs.Con_Printf("map: %s\n", gEngfuncs.pfnGetLevelName());
+			gEngfuncs.Con_Printf("num score ping    name           \n");
+			gEngfuncs.Con_Printf("--- ----- ------- ---------------\n");
+			isfirstplayer = false;
+		}
+
+		int	j, l;
+		const char* s;
+
+		gEngfuncs.Con_Printf("%3i ", i);
+		gEngfuncs.Con_Printf("%5i ", g_PlayerExtraInfo[i].frags);
+
+		gEngfuncs.Con_Printf("Connect");
+		gEngfuncs.Con_Printf("%7i ", pl.ping);
+
+		gEngfuncs.Con_Printf("%s", pl.name);
+		gEngfuncs.Con_Printf("\n");
+	}
+	if (isfirstplayer)
+	{
+		gEngfuncs.Con_Printf("^3no server running.");
+	}
+	gEngfuncs.Con_Printf("\n");
+}
+
 int Initialize( cl_enginefunc_t *pEnginefuncs, int iVersion )
 {
 	gEngfuncs = *pEnginefuncs;
@@ -149,6 +193,7 @@ int Initialize( cl_enginefunc_t *pEnginefuncs, int iVersion )
 		BuildInfo::GetArchitecture(),
 		BuildInfo::GetPlatform()
 	);
+	gEngfuncs.pfnAddCommand("status", CL_Status_f);
 	return 1;
 }
 

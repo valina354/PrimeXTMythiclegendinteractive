@@ -56,7 +56,25 @@ void CImGuiPostFxMenu::Draw()
     if (ImGui::SliderFloat("Film Grain Scale", &m_ParametersCache.filmGrainScale, 0.0f, 1.0f)) {
         StoreParameters();
     };
+    if (ImGui::SliderFloat("Chromatic Aberration Scale", &m_ParametersCache.ChromaticAberrationScale, 0.0f, 1.0f)) {
+        StoreParameters();
+    };
+    if (ImGui::SliderFloat("Sepia Scale", &m_ParametersCache.SepiaScale, 0.0f, 1.0f)) {
+        StoreParameters();
+    };
     if (ImGui::SliderFloat("Color Accent Scale", &m_ParametersCache.colorAccentScale, 0.0f, 1.0f)) {
+        StoreParameters();
+    };
+    if (ImGui::SliderFloat("Lens Flare Scale", &m_ParametersCache.LensFlareScale, 0.0f, 1.0f)) {
+        StoreParameters();
+    };
+    if (ImGui::SliderFloat("FXAA Scale", &m_ParametersCache.FXAAScale, 0.0f, 1.0f)) {
+        StoreParameters();
+    };
+    if (ImGui::SliderFloat("Sharpness Scale", &m_ParametersCache.SharpnessScale, 0.0f, 1.0f)) {
+        StoreParameters();
+    };
+    if (ImGui::SliderFloat("Dithering Scale", &m_ParametersCache.DitheringScale, 0.0f, 1.0f)) {
         StoreParameters();
     };
     BeginColorPicker();
@@ -116,6 +134,12 @@ void CImGuiPostFxMenu::LoadParameters()
     m_ParametersCache.blueLevel = state.GetBlueLevel();
     m_ParametersCache.vignetteScale = state.GetVignetteScale();
     m_ParametersCache.filmGrainScale = state.GetFilmGrainScale();
+    m_ParametersCache.ChromaticAberrationScale = state.GetChromaticAberrationScale();
+    m_ParametersCache.SepiaScale = state.GetSepiaScale();
+    m_ParametersCache.LensFlareScale = state.GetLensFlareScale();
+    m_ParametersCache.FXAAScale = state.GetFXAAScale();
+    m_ParametersCache.SharpnessScale = state.GetSharpnessScale ();
+    m_ParametersCache.DitheringScale = state.GetDitheringScale();
     m_ParametersCache.accentColor = state.GetAccentColor();
 }
 
@@ -131,6 +155,12 @@ void CImGuiPostFxMenu::StoreParameters()
     state.SetBlueLevel(m_ParametersCache.blueLevel);
     state.SetVignetteScale(m_ParametersCache.vignetteScale);
     state.SetFilmGrainScale(m_ParametersCache.filmGrainScale);
+    state.SetChromaticAberrationScale(m_ParametersCache.ChromaticAberrationScale);
+    state.SetSepiaScale(m_ParametersCache.SepiaScale);
+    state.SetLensFlareScale(m_ParametersCache.LensFlareScale);
+    state.SetFXAAScale(m_ParametersCache.FXAAScale);
+    state.SetSharpnessScale(m_ParametersCache.SharpnessScale);
+    state.SetDitheringScale(m_ParametersCache.DitheringScale);
     state.SetColorAccentScale(m_ParametersCache.colorAccentScale);
     state.SetAccentColor(m_ParametersCache.accentColor);
     g_PostFxController.UpdateState(state, false);

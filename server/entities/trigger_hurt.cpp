@@ -1,112 +1,68 @@
-/***
-*
-*	Copyright (c) 1996-2002, Valve LLC. All rights reserved.
-*	
-*	This product contains software technology licensed from Id 
-*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc. 
-*	All Rights Reserved.
-*
-*   Use, distribution, and modification of this source code and/or resulting
-*   object code is restricted to non-commercial enhancements to products from
-*   Valve LLC.  All other use, distribution, or modification is prohibited
-*   without written permission from Valve LLC.
-*
-****/
+/*
+ * Copyright (C) 2024 Jdjd Gaming
+ *
+ * This program is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+*/
 
-#include "trigger_hurt.h"
-#include "player.h"
+#include "triggers.h"
 
-LINK_ENTITY_TO_CLASS( trigger_hurt, CTriggerHurt );
+// Define the CTriggerHurt class
+class CTriggerHurt : public CBaseTrigger {
+public:
+    DECLARE_CLASS(CTriggerHurt, CBaseTrigger);
 
-BEGIN_DATADESC( CTriggerHurt )
-	DEFINE_FUNCTION( RadiationThink ),
-END_DATADESC()
 
-//
-// trigger_hurt - hurts anything that touches it. if the trigger has a targetname, firing it will toggle state
-//
-//int gfToggleState = 0; // used to determine when all radiation trigger hurts have called 'RadiationThink'
+    CTriggerHurt() : damageAmount(10.0f), damageType(DMG_GENERIC), damageInterval(1.0f), lastDamageTime(0) {
+    }
 
-void CTriggerHurt :: Spawn( void )
-{
-	InitTrigger();
-	SetTouch( &CBaseTrigger::HurtTouch );
+    void Spawn() override {
+        InitTrigger();
+        CBaseTrigger::Spawn();
+        SetTouch(&CTriggerHurt::Touch);
+    }
 
-	if ( !FStringNull ( pev->targetname ) )
-	{
-		SetUse( &CBaseTrigger::ToggleUse );
-	}
-	else
-	{
-		SetUse( NULL );
-	}
+    // Touch function
+    void Touch(CBaseEntity* pOther) override {
+        if (!pOther || !pOther->IsPlayer()) {
+            return;
+        }
 
-	if (m_bitsDamageInflict & DMG_RADIATION)
-	{
-		SetThink( &CTriggerHurt::RadiationThink );
-		pev->nextthink = gpGlobals->time + RANDOM_FLOAT(0.0, 0.5); 
-	}
+        float currentTime = gpGlobals->time;
+        if (currentTime - lastDamageTime >= damageInterval) {
+            pOther->TakeDamage(VARS(edict()), VARS(edict()), damageAmount, damageType);
+            lastDamageTime = currentTime;
+        }
+    }
 
-	if ( FBitSet (pev->spawnflags, SF_TRIGGER_HURT_START_OFF) )// if flagged to Start Turned Off, make trigger nonsolid.
-		pev->solid = SOLID_NOT;
+    // Load properties from key-value pairs
+    void KeyValue(KeyValueData* pkvd) override {
+        if (FStrEq(pkvd->szKeyName, "damage")) {
+            damageAmount = atof(pkvd->szValue);
+        }
+        else if (FStrEq(pkvd->szKeyName, "damage_type")) {
+            damageType = atoi(pkvd->szValue);
+        }
+        else if (FStrEq(pkvd->szKeyName, "interval")) {
+            damageInterval = atof(pkvd->szValue);
+        }
+        else {
+            BaseClass::KeyValue(pkvd);
+        }
+    }
 
-	RelinkEntity(); // Link into the list
-}
+private:
+    float damageAmount;
+    int damageType;
+    float damageInterval;
+    float lastDamageTime;
+};
 
-// trigger hurt that causes radiation will do a radius
-// check and set the player's geiger counter level
-// according to distance from center of trigger
-
-void CTriggerHurt :: RadiationThink( void )
-{
-
-	edict_t *pentPlayer;
-	CBasePlayer *pPlayer = NULL;
-	float flRange;
-	entvars_t *pevTarget;
-	Vector vecSpot1;
-	Vector vecSpot2;
-	Vector vecRange;
-	Vector origin;
-	Vector view_ofs;
-
-	// check to see if a player is in pvs
-	// if not, continue	
-
-	// set origin to center of trigger so that this check works
-	origin = GetAbsOrigin();
-	view_ofs = pev->view_ofs;
-
-	SetAbsOrigin(( pev->absmin + pev->absmax ) * 0.5f );
-	pev->view_ofs = g_vecZero;
-
-	pentPlayer = FIND_CLIENT_IN_PVS( edict( ));
-
-	SetAbsOrigin( origin );
-	pev->view_ofs = view_ofs;
-
-	// reset origin
-
-	if( !FNullEnt( pentPlayer ))
-	{
-		pPlayer = GetClassPtr( (CBasePlayer *)VARS(pentPlayer));
-		pevTarget = VARS( pentPlayer );
-
-		// get range to player;
-
-		vecSpot1 = (pev->absmin + pev->absmax) * 0.5f;
-		vecSpot2 = (pevTarget->absmin + pevTarget->absmax) * 0.5f;
-		
-		vecRange = vecSpot1 - vecSpot2;
-		flRange = vecRange.Length();
-
-		// if player's current geiger counter range is larger
-		// than range to this trigger hurt, reset player's
-		// geiger counter range 
-
-		if (pPlayer->m_flgeigerRange >= flRange)
-			pPlayer->m_flgeigerRange = flRange;
-	}
-
-	SetNextThink( 0.25 );
-}
+LINK_ENTITY_TO_CLASS(trigger_hurt, CTriggerHurt);

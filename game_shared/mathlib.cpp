@@ -141,6 +141,24 @@ void VectorAngles( const Vector &srcforward, Vector &angles )
 	}
 }
 
+float VectorNormalize(float *v)
+{
+	float length, ilength;
+
+	length = v[0] * v[0] + v[1] * v[1] + v[2] * v[2];
+	length = sqrt(length);		// FIXME
+
+	if (length)
+	{
+		ilength = 1.0f / length;
+		v[0] *= ilength;
+		v[1] *= ilength;
+		v[2] *= ilength;
+	}
+
+	return length;
+}
+
 /*
 =================
 VectorAnglesSQB

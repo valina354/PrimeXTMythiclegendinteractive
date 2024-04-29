@@ -85,6 +85,7 @@ cvar_t *r_hand;
 cvar_t *r_sunshadows;
 cvar_t *r_sun_allowed;
 cvar_t *r_sun_daytime;
+cvar_t *r_sun_brightness;
 cvar_t *r_shadow_split_weight;
 cvar_t *r_wireframe;
 cvar_t *r_lightstyles;
@@ -180,6 +181,7 @@ void R_InitializeConVars()
 	r_sunshadows = CVAR_REGISTER("gl_sun_shadows", "1", FCVAR_ARCHIVE);
 	r_sun_allowed = CVAR_REGISTER("r_sun_allowed", "0", FCVAR_ARCHIVE);
 	r_sun_daytime = CVAR_REGISTER("r_sun_daytime", "12", FCVAR_CLIENTDLL);
+	r_sun_brightness = CVAR_REGISTER("r_sun_brightness", "0.75", FCVAR_CLIENTDLL);
 	r_renderplayershadow = CVAR_REGISTER("r_renderplayershadow", "1", FCVAR_ARCHIVE);
 	r_shadowmap_size = CVAR_REGISTER("gl_shadowmap_size", "1024", FCVAR_ARCHIVE);
 	r_occlusion_culling = CVAR_REGISTER("r_occlusion_culling", "0", FCVAR_ARCHIVE);
@@ -195,7 +197,7 @@ void R_InitializeConVars()
 	r_allow_3dsky = CVAR_REGISTER("gl_allow_3dsky", "1", FCVAR_ARCHIVE);
 	r_studio_decals = CVAR_REGISTER("r_studio_decals", "32", FCVAR_ARCHIVE);
 	cv_show_tbn = CVAR_REGISTER("gl_show_basis", "0", FCVAR_ARCHIVE);
-	cv_brdf = CVAR_REGISTER("r_lighting_brdf", "0", FCVAR_ARCHIVE);
+	cv_brdf = CVAR_REGISTER("r_lighting_brdf", "1", FCVAR_ARCHIVE);
 
 	r_grass = CVAR_REGISTER("r_grass", "1", FCVAR_ARCHIVE);
 	r_grass_alpha = CVAR_REGISTER("r_grass_alpha", "0.5", FCVAR_ARCHIVE);

@@ -71,7 +71,7 @@ int CHudBattery:: MsgFunc_Battery(const char *pszName, int iSize, void *pbuf )
 
 int CHudBattery::Draw( float flTime )
 {
-	if( gHUD.m_iHideHUDDisplay & HIDEHUD_HEALTH )
+	if (gHUD.m_iHideHUDDisplay & HIDEHUD_HEALTH || !m_iBat)
 		return 1;
 
 	if( !gHUD.HasWeapon( WEAPON_SUIT ))

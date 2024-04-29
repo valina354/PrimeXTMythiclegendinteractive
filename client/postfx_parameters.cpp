@@ -29,6 +29,12 @@ void CPostFxParameters::ParseMessage()
 	m_flBlueLevel = READ_FLOAT();
 	m_flVignetteScale = READ_FLOAT();
 	m_flFilmGrainScale = READ_FLOAT();
+	m_flChromaticAberrationScale = READ_FLOAT();
+	m_flSepiaScale = READ_FLOAT();
+	m_flLensFlareScale = READ_FLOAT();
+	m_flFXAAScale = READ_FLOAT();
+	m_flSharpnessScale = READ_FLOAT();
+	m_flDitheringScale = READ_FLOAT();
 	m_flColorAccentScale = READ_FLOAT();
 	m_vecAccentColor.x = READ_FLOAT();
 	m_vecAccentColor.y = READ_FLOAT();
@@ -46,6 +52,12 @@ void CPostFxParameters::Interpolate(const CPostFxParameters &oldState, const CPo
 	m_flBlueLevel = InterpolateParameter(oldState.GetBlueLevel(), newState.GetBlueLevel(), t);
 	m_flVignetteScale = InterpolateParameter(oldState.GetVignetteScale(), newState.GetVignetteScale(), t);
 	m_flFilmGrainScale = InterpolateParameter(oldState.GetFilmGrainScale(), newState.GetFilmGrainScale(), t);
+	m_flChromaticAberrationScale = InterpolateParameter(oldState.GetChromaticAberrationScale(), newState.GetChromaticAberrationScale(), t);
+	m_flSepiaScale = InterpolateParameter(oldState.GetSepiaScale(), newState.GetSepiaScale(), t);
+	m_flLensFlareScale = InterpolateParameter(oldState.GetLensFlareScale(), newState.GetLensFlareScale(), t);
+	m_flFXAAScale = InterpolateParameter(oldState.GetFXAAScale(), newState.GetFXAAScale(), t);
+	m_flSharpnessScale = InterpolateParameter(oldState.GetFXAAScale(), newState.GetFXAAScale(), t);
+	m_flDitheringScale = InterpolateParameter(oldState.GetDitheringScale(), newState.GetDitheringScale(), t);
 	m_flColorAccentScale = InterpolateParameter(oldState.GetColorAccentScale(), newState.GetColorAccentScale(), t);
 	m_vecAccentColor.x = InterpolateParameter(oldState.GetAccentColor().x, newState.GetAccentColor().x, t);
 	m_vecAccentColor.y = InterpolateParameter(oldState.GetAccentColor().y, newState.GetAccentColor().y, t);
@@ -61,9 +73,15 @@ const CPostFxParameters& CPostFxParameters::Defaults()
 	defaults.m_flRedLevel = 1.0f;
 	defaults.m_flGreenLevel = 1.0f;
 	defaults.m_flBlueLevel = 1.0f;
-	defaults.m_flVignetteScale = 0.0f;
-	defaults.m_flFilmGrainScale = 0.0f;
-	defaults.m_flColorAccentScale = 0.0f;
+	defaults.m_flVignetteScale = 0.60f;
+	defaults.m_flFilmGrainScale = 0.320f;
+	defaults.m_flChromaticAberrationScale = 0.001f;
+	defaults.m_flSepiaScale = 0.005f;
+	defaults.m_flLensFlareScale = 0.3f;
+	defaults.m_flColorAccentScale = 0.05f;
+	defaults.m_flFXAAScale = 0.0f;
+	defaults.m_flSharpnessScale = 0.062f;
+	defaults.m_flDitheringScale = 0.0f;
 	defaults.m_vecAccentColor = Vector(1.0f, 1.0f, 1.0f);
 	return defaults;
 }

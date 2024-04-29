@@ -3,9 +3,9 @@
 #ifdef HLRAD_AMBIENTCUBES
 
 // the angle between consecutive g_anorms[] vectors is ~14.55 degrees
-#define MIN_LOCAL_SAMPLES	4
-#define MAX_LOCAL_SAMPLES	16		// unsigned byte limit
-#define MAX_SAMPLES		32		// enough
+#define MIN_LOCAL_SAMPLES	128
+#define MAX_LOCAL_SAMPLES	256		// unsigned byte limit
+#define MAX_SAMPLES		512		// enough
 #define MAX_LEAF_PLANES	512		// QuArK cylinder :-)
 #define AMBIENT_SCALE	128.0		// ambient clamp at 128
 #define GAMMA		( 2.2f )		// Valve Software gamma

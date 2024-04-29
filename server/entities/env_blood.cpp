@@ -27,6 +27,12 @@ void CBlood::Spawn( void )
 	pev->solid	= SOLID_NOT;
 	pev->movetype	= MOVETYPE_NONE;
 	pev->frame	= 0;
+
+	if ((pev->impulse != BLOOD_COLOR_YELLOW) && (pev->impulse != BLOOD_COLOR_GREEN) &&
+		(pev->impulse != BLOOD_COLOR_RED))
+	{
+		pev->impulse = BLOOD_COLOR_YELLOW;
+	}
 }
 
 void CBlood::KeyValue( KeyValueData *pkvd )
@@ -38,6 +44,9 @@ void CBlood::KeyValue( KeyValueData *pkvd )
 		{
 		case 1:
 			SetColor( BLOOD_COLOR_YELLOW );
+			break;
+		case 2:
+			SetColor(BLOOD_COLOR_GREEN);
 			break;
 		default:
 			SetColor( BLOOD_COLOR_RED );

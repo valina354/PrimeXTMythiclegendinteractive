@@ -46,8 +46,8 @@ GNU General Public License for more details.
 #define MAX_SUBVIEW_FACES	1024			// mirrors, portals, monitors, water, puddles. NOTE: multipass faces can merge view passes
 #define MAX_OCCLUDED_FACES	1024			// mirrors + water
 #define MAX_SORTED_MESHES	2048			// studio only
-#define MAX_MOVIES			16			// max various movies per level
-#define MAX_MOVIE_TEXTURES	64			// max # of unique video textures per level
+#define MAX_MOVIES			64			// max various movies per level
+#define MAX_MOVIE_TEXTURES	256			// max # of unique video textures per level
 #define MAX_LIGHTSTYLES		256			// increased from 64 to 256, according to Xash3D FWGS
 #define MAX_LIGHTMAPS		256			// Xash3D supports up to 256 lightmaps
 #define MAX_DLIGHTS 		64			// per one frame. unsigned int limit
@@ -78,7 +78,7 @@ GNU General Public License for more details.
 #define BLOCK_SIZE		glConfig.block_size		// lightmap blocksize
 #define BLOCK_SIZE_DEFAULT	128			// for keep backward compatibility
 #define BLOCK_SIZE_MAX	2048			// must match with engine const!!!
-#define SHADOW_SIZE		4096			// atlas size
+#define SHADOW_SIZE		2048			// atlas size
 
 #define WORLD_MATRIX	0			// must be 0 always
 #define REFPVS_RADIUS	2.0f			// PVS radius for rendering

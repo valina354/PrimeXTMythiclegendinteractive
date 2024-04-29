@@ -16,6 +16,9 @@ if(MSVC)
 endif()
 
 add_executable(${PROJECT_NAME} WIN32 ${DIR_SOURCES})
+set_target_properties(${PROJECT_NAME} PROPERTIES
+    VS_DEBUGGER_COMMAND_ARGUMENTS "-console"
+)
 target_include_directories(${PROJECT_NAME} PRIVATE
 	"."
 	"../common"
@@ -63,7 +66,7 @@ endif()
 
 # set build output directory
 set(DIR_LAUNCHER_OUTPUT 
-	${CMAKE_BINARY_DIR}/${CMAKE_BUILD_TYPE}/
+    "${CMAKE_CURRENT_BINARY_DIR}/../../game_dir/"
 )
 
 set_target_properties(game_launcher PROPERTIES 

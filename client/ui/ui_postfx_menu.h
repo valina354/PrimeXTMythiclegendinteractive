@@ -26,6 +26,12 @@ private:
         float blueLevel;
         float vignetteScale;
         float filmGrainScale;
+        float ChromaticAberrationScale;
+        float SepiaScale;
+        float LensFlareScale;
+        float FXAAScale;
+        float SharpnessScale;
+        float DitheringScale;
         float colorAccentScale;
         Vector accentColor;
     };

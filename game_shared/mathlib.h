@@ -83,6 +83,8 @@ bool IsSphereIntersectingCone(const Vector &sphereCenter, float sphereRadius, co
 bool PlanesGetIntersectionPoint( const struct mplane_s *plane1, const struct mplane_s *plane2, const struct mplane_s *plane3, Vector &out );
 Vector PlaneIntersect( struct mplane_s *plane, const Vector& p0, const Vector& p1 );
 void VectorAngles( const Vector &forward, Vector &angles );
+#define VectorSubtract(a, b, c) { (c)[0] = (a)[0] - (b)[0]; (c)[1] = (a)[1] - (b)[1]; (c)[2] = (a)[2] - (b)[2]; }
+float VectorNormalize(float *v);
 void VectorAnglesSQB(const Vector &forward, Vector &angles);
 void UTIL_MoveBounds(const Vector &start, const Vector &mins, const Vector &maxs, const Vector &end, Vector &outmins, Vector &outmaxs);
 

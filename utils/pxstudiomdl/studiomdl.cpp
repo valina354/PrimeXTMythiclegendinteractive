@@ -539,7 +539,7 @@ s_mesh_t *LookupMesh( s_model_t *pmodel, char *texturename )
 s_trianglevert_t *LookupTriangle( s_mesh_t *pmesh, int index )
 {
 	if( index >= MAXSTUDIOTRIANGLES )
-		COM_FatalError( "max studio triangles exceeds 65536\n" );
+		COM_FatalError( "max studio triangles exceeds 262144\n" );
 
 	if( index >= pmesh->alloctris )
 	{

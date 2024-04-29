@@ -14,7 +14,7 @@
 
 #ifdef HLRAD_VERTEXLIGHTING
 
-#define MAX_INDIRECT_DIST	1024.0f
+#define MAX_INDIRECT_DIST	4096.0f
 
 typedef struct
 {

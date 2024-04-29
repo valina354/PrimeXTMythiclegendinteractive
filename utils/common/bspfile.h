@@ -53,22 +53,22 @@ BRUSH MODELS
 #define EXTRA_VERSION_OLD		2	// extra version 2 (P2:Savior regular version) to get minimal backward compatibility
 
 // upper design bounds
-#define MAX_MAP_HULLS		4
+#define MAX_MAP_HULLS		16
 
-#define MAXPOINTS			28	// don't let a base face get past this
+#define MAXPOINTS			24	// don't let a base face get past this
 					// because it can be split more later
 
-#define MAX_TEXFILES		128	// max connected wad-files
-#define MAX_MAP_BRUSHES		68000	// even ad_sepulcher never reach this value
-#define MAX_MAP_ENTSTRING		0x200000	// 2 mB should be enough
-#define MAX_INTERNAL_MAP_PLANES	524288	// internal compiler limit
-#define MAX_INTERNAL_MAP_TEXINFO	262144	// internal compiler limit
-#define MAX_MAP_NORMS		32768	// sphere with step as two degrees (180*180=32400)
-#define MAX_MAP_VERTNORMS		0x200000	// can be increased but not needed
+#define MAX_TEXFILES		4096	// max connected wad-files
+#define MAX_MAP_BRUSHES		524288	// even ad_sepulcher never reach this value
+#define MAX_MAP_ENTSTRING		0x800000	// 2 mB should be enough
+#define MAX_INTERNAL_MAP_PLANES	2097152	// internal compiler limit
+#define MAX_INTERNAL_MAP_TEXINFO	1048576	// internal compiler limit
+#define MAX_MAP_NORMS		262144	// sphere with step as two degrees (180*180=32400)
+#define MAX_MAP_VERTNORMS		0x800000	// can be increased but not needed
 #define MAX_MAP_PORTALS		65536
 
 // lightmap resolution
-#define TEXTURE_STEP		16		// if lightmap extent exceeds 16, the map will not be able to load in 'Software Mode'
+#define TEXTURE_STEP		64		// if lightmap extent exceeds 16, the map will not be able to load in 'Software Mode'
 #define WORLD_TEXTURE_STEP		1
 #define TEXTURE_EXTRA_STEP		8
 #define MAX_SURFACE_EXTENT		16		// renderer and HLDS. //--vluzacn

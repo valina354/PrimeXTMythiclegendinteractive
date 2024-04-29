@@ -21,22 +21,22 @@
 #include "compatibility_mode.h"
 
 #define DEFAULT_FASTMODE		false
-#define DEFAULT_EXTRAMODE		false
+#define DEFAULT_EXTRAMODE		true
 #define DEFAULT_TEXSCALE		true
 #define DEFAULT_CHOP		128.0
-#define DEFAULT_TEXCHOP		32.0
+#define DEFAULT_TEXCHOP		128.0
 #define DEFAULT_DLIGHT_SCALE		2.0
 #define DEFAULT_LIGHT_SCALE		1.0
-#define DEFAULT_LERP_ENABLED		false
+#define DEFAULT_LERP_ENABLED		true
 #define DEFAULT_WADTEXTURES		false
-#define DEFAULT_DIRTMAPPING		false
+#define DEFAULT_DIRTMAPPING		true
 #define DEFAULT_TEXREFLECTGAMMA	(1.0 / 2.2)	// turn back to linear space
 #define DEFAULT_TEXREFLECTSCALE	1.0
-#define DEFAULT_BLUR		1.0
-#define DEFAULT_BOUNCE		3
+#define DEFAULT_BLUR		0.5
+#define DEFAULT_BOUNCE		8
 #define DEFAULT_LIGHTCLIP		196
-#define DEFAULT_SMOOTHVALUE		50.0
-#define DEFAULT_INDIRECT_SUN		1.0
+#define DEFAULT_SMOOTHVALUE		100.0
+#define DEFAULT_INDIRECT_SUN		2.0
 #define DEFAULT_GAMMA		0.5
 #define DEFAULT_COMPAT_MODE		CompatibilityMode::PrimeXT
 #define DLIGHT_THRESHOLD		10.0

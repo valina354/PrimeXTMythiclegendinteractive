@@ -28,6 +28,9 @@ BEGIN_DATADESC( CEnvPostFxController )
 	DEFINE_FIELD( m_flBlueLevel, FIELD_FLOAT ),
 	DEFINE_FIELD( m_flVignetteScale, FIELD_FLOAT ),
 	DEFINE_FIELD( m_flFilmGrainScale, FIELD_FLOAT ),
+	DEFINE_FIELD(m_flChromaticAberrationScale, FIELD_FLOAT),
+	DEFINE_FIELD(m_flSepiaScale, FIELD_FLOAT),
+	DEFINE_FIELD(m_flLensFlareScale, FIELD_FLOAT),
 	DEFINE_FIELD( m_flColorAccentScale, FIELD_FLOAT ),
 	DEFINE_FIELD( m_vecAccentColor, FIELD_VECTOR ),
 END_DATADESC()
@@ -86,6 +89,21 @@ void CEnvPostFxController::KeyValue(KeyValueData *pkvd)
 		m_flFilmGrainScale = atof(pkvd->szValue);
 		pkvd->fHandled = TRUE;
 	}
+	else if (FStrEq(pkvd->szKeyName, "Chromatic_Abberation_scale"))
+	{
+		m_flChromaticAberrationScale = atof(pkvd->szValue);
+		pkvd->fHandled = TRUE;
+	}
+	else if (FStrEq(pkvd->szKeyName, "Sepia_Scale"))
+	{
+		m_flSepiaScale = atof(pkvd->szValue);
+		pkvd->fHandled = TRUE;
+	}
+	else if (FStrEq(pkvd->szKeyName, "Lens_Flare_Scale"))
+	{
+		m_flLensFlareScale = atof(pkvd->szValue);
+		pkvd->fHandled = TRUE;
+	}
 	else if (FStrEq(pkvd->szKeyName, "color_accent_scale"))
 	{
 		m_flColorAccentScale = atof(pkvd->szValue);
@@ -134,6 +152,9 @@ void CEnvPostFxController::Use(CBaseEntity *pActivator, CBaseEntity *pCaller, US
 		WRITE_FLOAT(fadeOut ? 1.0f : m_flBlueLevel);
 		WRITE_FLOAT(fadeOut ? 0.0f : m_flVignetteScale);
 		WRITE_FLOAT(fadeOut ? 0.0f : m_flFilmGrainScale);
+		WRITE_FLOAT(fadeOut ? 0.0f : m_flChromaticAberrationScale);
+		WRITE_FLOAT(fadeOut ? 0.0f : m_flSepiaScale);
+		WRITE_FLOAT(fadeOut ? 0.0f : m_flLensFlareScale);
 		WRITE_FLOAT(fadeOut ? 0.0f : m_flColorAccentScale);
 		WRITE_FLOAT(fadeOut ? 1.0f : m_vecAccentColor.x);
 		WRITE_FLOAT(fadeOut ? 1.0f : m_vecAccentColor.y);

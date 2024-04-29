@@ -71,7 +71,7 @@ if(COMPATIBILITY_TYPE STREQUAL "p2")
 		HLRAD_PSAVIOR=1
 		HLRAD_REFLECTIVITY=1
 		HLRAD_DELUXEMAPPING=1			# store deluxe vectors for bump-mapping
-		#HLRAD_SHADOWMAPPING=0			# store shadow intensity for bump-mapping
+		HLRAD_SHADOWMAPPING=1			# store shadow intensity for bump-mapping
 		HLRAD_VERTEXLIGHTING=1 			# vertex lighting for static models
 		HLRAD_LIGHTMAPMODELS=1			# calculate lightmaps on the models
 		HLRAD_AMBIENTCUBES=1			# leaf ambient lighting

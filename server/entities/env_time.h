@@ -1,9 +1,9 @@
 /***
 *
 *	Copyright (c) 1996-2002, Valve LLC. All rights reserved.
-*	
-*	This product contains software technology licensed from Id 
-*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc. 
+*
+*	This product contains software technology licensed from Id
+*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc.
 *	All Rights Reserved.
 *
 *   Use, distribution, and modification of this source code and/or resulting
@@ -24,13 +24,13 @@
 
 class CEnvTime : public CBaseDelay
 {
-	DECLARE_CLASS( CEnvTime, CBaseDelay );
+	DECLARE_CLASS(CEnvTime, CBaseDelay);
 public:
-	void Spawn( void );
-	void Think( void );
-	void Activate( void );
-	void KeyValue( KeyValueData *pkvd );
-	int ObjectCaps( void ) { return BaseClass :: ObjectCaps() & ~FCAP_ACROSS_TRANSITION; }
+	void Spawn(void);
+	void Think(void);
+	void Activate(void);
+	void KeyValue(KeyValueData *pkvd);
+	int ObjectCaps(void) { return BaseClass::ObjectCaps() & ~FCAP_ACROSS_TRANSITION; }
 private:
 	float m_flLevelTime;
 	Vector m_vecTime;

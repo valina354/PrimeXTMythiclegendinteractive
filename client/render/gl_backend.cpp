@@ -178,7 +178,7 @@ void GL_ComputeSunParams( const Vector &skyVector )
 {
 	// calculate ambient and diffuse light color
 	float	sunPos = -skyVector.z;
-	float	sunBrightness = 0.75f;
+	float	sunBrightness = r_sun_brightness->value;
 	float	refractionFactor = 1.0f - sqrt(Q_max(sunPos, 0.0f));
 	vec3_t	sunColor = vec3_t(1.0f, 1.0f, 1.0f) - vec3_t(0.0f, 0.3f, 0.6f) * refractionFactor;
 	float	ambientIntensity = 0.0025f + sunBrightness * Q_min(1.0f, Q_max(0.0f, (0.375f + sunPos) / 0.25f));

@@ -22,5 +22,6 @@ void CGameEnd::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useT
 	if ( !CanFireForActivator( pActivator ) )
 		return;
 
+	CLIENT_COMMAND(pActivator->edict(), "disconnect\n");
 	g_pGameRules->EndMultiplayerGame();
 }

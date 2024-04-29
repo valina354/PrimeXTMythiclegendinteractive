@@ -9,6 +9,6 @@
 #define LIGHTLIMITS_H
 
 #define MAXDYNLIGHTS	8	// maximum dynamic lights per one pixel
-#define MAXLIGHTMAPS	4	// max light styles per face
+#define MAXLIGHTMAPS	8	// max light styles per face
 
 #endif//LIGHTLIMITS_H

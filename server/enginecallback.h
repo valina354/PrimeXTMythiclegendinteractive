@@ -166,6 +166,8 @@ inline void *GET_PRIVATE( edict_t *pent )
 
 #define PLAYER_CNX_STATS		( *g_engfuncs.pfnGetPlayerStats )
 
+#define SETUP_FOG	(*g_engfuncs.pfnUpdateFogSettings)
+
 void Msg( const char *szText, ... );
 
 #endif		//ENGINECALLBACK_H
