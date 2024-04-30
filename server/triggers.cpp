@@ -15,7 +15,13 @@
 
 #include "triggers.h"
 #include "gamerules.h"
-#include "trigger_hurt.h"
+
+#define SF_TRIGGER_HURT_TARGETONCE	1
+#define SF_TRIGGER_HURT_START_OFF	2
+#define SF_TRIGGER_HURT_NO_CLIENTS	4
+#define SF_T0RIGGER_HURT_NO_CLIENTS	8
+#define SF_TRIGGER_HURT_CLIENTONLYFIRE	16
+#define SF_TRIGGER_HURT_CLIENTONLYTOUCH 32
 
 LINK_ENTITY_TO_CLASS( trigger, CBaseTrigger );
 

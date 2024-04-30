@@ -1,49 +1,27 @@
-/***
-*
-*	Copyright (c) 1996-2002, Valve LLC. All rights reserved.
-*	
-*	This product contains software technology licensed from Id 
-*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc. 
-*	All Rights Reserved.
-*
-*   Use, distribution, and modification of this source code and/or resulting
-*   object code is restricted to non-commercial enhancements to products from
-*   Valve LLC.  All other use, distribution, or modification is prohibited
-*   without written permission from Valve LLC.
-*
-***/
+#include "extdll.h"
+#include "util.h"
+#include "cbase.h"
+#include "triggers.h"
 
-#include "trigger_autosave.h"
-#include "gamerules.h"
+class CTriggerAutosave : public CBaseTrigger {
+public:
+    void Spawn() override;
+    void Touch(CBaseEntity* pOther) override;
+};
 
-LINK_ENTITY_TO_CLASS( trigger_autosave, CTriggerSave );
-
-BEGIN_DATADESC( CTriggerSave )
-	DEFINE_FUNCTION( SaveTouch ),
-END_DATADESC()
-
-void CTriggerSave::Spawn( void )
-{
-	if ( g_pGameRules->IsDeathmatch() )
-	{
-		REMOVE_ENTITY( ENT(pev) );
-		return;
-	}
-
-	InitTrigger();
-	SetTouch( &CTriggerSave::SaveTouch );
+void CTriggerAutosave::Spawn() {
+    InitTrigger();
+    CBaseTrigger::Spawn();
+    SetTouch(&CTriggerAutosave::Touch);
 }
 
-void CTriggerSave::SaveTouch( CBaseEntity *pOther )
-{
-	if ( !UTIL_IsMasterTriggered( m_sMaster, pOther ) )
-		return;
+void CTriggerAutosave::Touch(CBaseEntity* pOther) {
+    if (!pOther->IsPlayer()) {
+        return;
+    }
 
-	// Only save on clients
-	if ( !pOther->IsPlayer() )
-		return;
-    
-	SetTouch( NULL );
-	UTIL_Remove( this );
-	SERVER_COMMAND( "autosave\n" );
+    SERVER_COMMAND("save autosave\n");
+    UTIL_Remove(this);
 }
+
+LINK_ENTITY_TO_CLASS(trigger_autosave, CTriggerAutosave);

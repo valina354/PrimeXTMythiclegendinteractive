@@ -44,10 +44,10 @@ public:
 
     // Load properties from key-value pairs
     void KeyValue(KeyValueData* pkvd) override {
-        if (FStrEq(pkvd->szKeyName, "damage")) {
+        if (FStrEq(pkvd->szKeyName, "dmg")) {
             damageAmount = atof(pkvd->szValue);
         }
-        else if (FStrEq(pkvd->szKeyName, "damage_type")) {
+        else if (FStrEq(pkvd->szKeyName, "damagetype")) {
             damageType = atoi(pkvd->szValue);
         }
         else if (FStrEq(pkvd->szKeyName, "interval")) {
